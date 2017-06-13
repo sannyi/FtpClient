@@ -131,7 +131,6 @@ namespace FtpClientSample
 
         internal Task<FtpResponse> ExecuteCommand(string value, string type)
         {
-        //For others
         //StorAsync -> filenam >> value, "STOR" >> type
         //RetrAsync -> filename >> value, "RETR" >> type
         //SizeAsync -> filename >> value, "SIZE" >> type
@@ -139,8 +138,7 @@ namespace FtpClientSample
         //TypeAsync -> type >> value, "TYPE" >> type
         //PassAsync -> password >> value, "PASS" >>type
         //UserAsync -> user >> value, "USER" >> type
-        
-          return SendCommandAndGetResponseAsync(String.Format(type+" {0}\r\n",value);
+        return SendCommandAndGetResponseAsync(String.Format(type+" {0}\r\n",value);
         }
        
         internal async Task<IBuffer> ReadAndCloseAsync(uint dataLength)
@@ -209,7 +207,7 @@ namespace FtpClientSample
             {
                 if (expectedReplyCode == response.ReplyCode)
                 {
-                    return;
+                    return;res
                 }
             }
 
