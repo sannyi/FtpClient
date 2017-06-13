@@ -129,56 +129,20 @@ namespace FtpClientSample
             await dataStreamSocket.ConnectAsync(hostName, port.ToString());
         }
 
-        internal Task<FtpResponse> UserAsync(string user)
-        {
-            string command = String.Format("USER {0}\r\n", user);
-            return SendCommandAndGetResponseAsync(command);
-        }
-
-        internal Task<FtpResponse> PassAsync(string password)
-        {
-            string command = String.Format("PASS {0}\r\n", password);
-            return SendCommandAndGetResponseAsync(command);
-        }
-
-        internal Task<FtpResponse> TypeAsync(string type)
-        {
-            string command = string.Format("TYPE {0}\r\n", type);
-            return SendCommandAndGetResponseAsync(command);
-        }
-
-        internal Task<FtpResponse> EpsvAsync()
-        {
-            string command = string.Format("EPSV\r\n");
-            return SendCommandAndGetResponseAsync(command);
-        }
-
-        internal Task<FtpResponse> SizeAsync(string fileName)
-        {
-            string command = string.Format("SIZE {0}\r\n", fileName);
-            return SendCommandAndGetResponseAsync(command);
-        }
-
-        internal Task<FtpResponse> RetrAsync(string fileName)
-        {
-            string command = string.Format("RETR {0}\r\n", fileName);
-            return SendCommandAndGetResponseAsync(command);
-        }
-
-        internal Task<FtpResponse> StorAsync(string fileName)
-        {
-            string command = string.Format("STOR {0}\r\n", fileName);
-            return SendCommandAndGetResponseAsync(command);
-        }
-        //Merge all of the upper methods into one
-       
-       
         internal Task<FtpResponse> ExecuteCommand(string value, string type)
         {
         //For others
         //StorAsync -> filenam >> value, "STOR" >> type
-            return SendCommandAndGetResponseAsync(String.Format(type+" {0}\r\n,value);
+        //RetrAsync -> filename >> value, "RETR" >> type
+        //SizeAsync -> filename >> value, "SIZE" >> type
+        //EpsvAsync -> "" >> value, "EPSV" >> type
+        //TypeAsync -> type >> value, "TYPE" >> type
+        //PassAsync -> password >> value, "PASS" >>type
+        //UserAsync -> user >> value, "USER" >> type
+        
+          return SendCommandAndGetResponseAsync(String.Format(type+" {0}\r\n",value);
         }
+       
         internal async Task<IBuffer> ReadAndCloseAsync(uint dataLength)
         {
             IBuffer buffer = new Windows.Storage.Streams.Buffer(dataLength);
