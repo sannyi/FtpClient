@@ -170,7 +170,15 @@ namespace FtpClientSample
             string command = string.Format("STOR {0}\r\n", fileName);
             return SendCommandAndGetResponseAsync(command);
         }
-
+        //Merge all of the upper methods into one
+       
+       
+        internal Task<FtpResponse> ExecuteCommand(string value, string type)
+        {
+        //For others
+        //StorAsync -> filenam >> value, "STOR" >> type
+            return SendCommandAndGetResponseAsync(String.Format(type+" {0}\r\n,value);
+        }
         internal async Task<IBuffer> ReadAndCloseAsync(uint dataLength)
         {
             IBuffer buffer = new Windows.Storage.Streams.Buffer(dataLength);
